@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Color Overlap</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-ui/jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">
+	<!-- ////////// -->	<!-- ////////// -->	<!-- ////////// -->
+	<style>
+  /*#drag { 
+  	width: 400px; 
+  	height: 300px; 
+  	background-color: deeppink;
+  }
+  #resizable { 
+  	width: 400px; 
+  	height: 300px; 
+  	background-color: red;
+  }
+	#also { 
+	  	width: 400px; 
+	  	height: 300px; 
+	  	background-color: blue;
+	  }
+
+  p {
+  	width: 30%;
+  }*/
+  #square1{
+  	width: 400px; 
+  	height: 400px;
+  	opacity: .3 !important;
+  	background-color: cyan;
+  	border-radius: 50%;
+  	float: left;
+  }
+  #square2{
+  	width: 300px; 
+  	height: 300px; 
+  	background-color: deeppink;
+  	border-radius: 50%;
+  	opacity: .3 !important;
+  	float: left;
+  }
+  #square3{
+  	width: 200px; 
+  	height: 200px; 
+  	background-color: yellow;
+  	border-radius: 50%;
+  	opacity: .3 !important;
+  	float: left;
+  }
+
+  body {
+  	background: url(https://images.unsplash.com/photo-1515511856280-7b23f68d2996?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=23a330aee88cc10ebb7a87ce9d591aee&auto=format&fit=crop&w=1353&q=80);
+  	background-size: cover;
+  	background-repeat: no-repeat;
+  }
+  input	{
+  	border-radius: 50%
+  	border: none;
+  	width: 100px;
+  	height: 100px;
+  	float: right;
+  }
+  </style>
+		<!-- ////////// -->	<!-- ////////// -->	<!-- ////////// -->
+</head>
+<body>
+
+<!-- <div id="resizable" class="ui-widget-content">
+  <h3 class="ui-widget-header">Resizable</h3>
+
+  <div id="also"></div>
+
+	<div id="draggable">Drag me horizontally!
+		<div id="drag">
+  		<span>I'm stuck in the box</span>
+		</div>
+	</div>
+</div> -->
+
+<input id="color1" type="color" name="" value="#FF1493">
+<input id="color2" type="color" name="" value="#00FFFF">
+<input id="color3" type="color" name="" value="#ffff00">
+<div id="square2"></div>
+<div id="square1"></div>
+<div id="square3"></div>
+<div id="accordion">
+  <h3>Section 1</h3>
+  <div>
+    <p>
+    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+    </p>
+  </div>
+  <h3>Section 2</h3>
+  <div>
+    <p>
+    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+    suscipit faucibus urna.
+    </p>
+  </div>
+  <h3>Section 3</h3>
+  <div>
+    <p>
+    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+    </p>
+    <ul>
+      <li>List item one</li>
+      <li>List item two</li>
+      <li>List item three</li>
+    </ul>
+  </div>
+  <h3>Section 4</h3>
+  <div>
+    <p>
+    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+    mauris vel est.
+    </p>
+    <p>
+    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+    inceptos himenaeos.
+    </p>
+  </div>
+</div>
+
+<div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+<ul id="sortable">
+  <li>Prem</li>
+  <li>Ram</li>
+  <li>Preeti</li>
+  <li>Shyam</li>
+</ul>
+<!-- //////////////////////////////////////
+//////////////////////////////////////
+////////////////////////////////////// -->
+ <script>
+  $( "#sortable" ).sortable();
+  $( "#sortable" ).disableSelection();
+ 	$( "#accordion" ).accordion();
+  $( "#dialog" ).dialog();
+ // $("#resizable").resizable({
+ // 	grid: 50,
+ // 	alsoResize: "#also", 
+ // 	resize: function( event,  ui){
+ // 		if($("#resizable").width() > 500) {
+ // 			alert("big enough!");
+ // 	}
+ // }
+ // });
+ // $("#also").resizable();
+ // $("#draggable").draggable({ axis: "x" });
+ // $("span").draggable({containment: "parent"});
+$("#color1").change(function(){
+	var color = $("#color1").val();
+	$("#square1").css("background-color", color);
+})
+$("#color2").change(function(){
+	var color = $("#color2").val();
+	$("#square2").css("background-color", color);
+})
+
+$( function() {
+	$( "#square1" ).draggable();
+	$( "#square2" ).draggable();
+  $( "#square3" ).draggable();
+  $( "#square2" ).droppable({
+      drop: function(event, ui) {
+        alert("You have reached NIRVANA!");
+      }
+  });
+});
+
+
+  </script>
+  <!-- //////////////////////////////////////
+//////////////////////////////////////
+////////////////////////////////////// -->
+</body>
+</html>
